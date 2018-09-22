@@ -2,6 +2,7 @@ const router = require('express').Router();
 
 const { selectStatement, insertStatement } = require('./../db/index');
 
+/* GET the journey for an individual user */
 router.get('/journey/:user', (req, res) => {
     //'U.memberSince',
     selectStatement(['D.amount', 'D.dateOfDonation'], 'UsersTable AS U',` INNER JOIN donations AS D on D.userID = U.userID WHERE U.username = '${req.params.user}' ORDER BY D.dateOfDonation`)
@@ -17,6 +18,7 @@ router.get('/journey/:user', (req, res) => {
         });
 });
 
+/* POST the donation amount */
 router.post('/donation', (req, res) => {
     selectStatement(['userID'], 'UsersTable', `WHERE username = '${req.body.name}'`)
         .then(user => {
@@ -43,6 +45,7 @@ router.post('/donation', (req, res) => {
         });
 });
 
+/* DOES NOT WORK ATM, NEEDS MORE WORK INCLUDING TABLE CREATION */
 router.get('/referral/:user', (req, res) => {
     selectStatement(['userID', 'UDT.linkUsed'], 'UsersTable AS U', `INNER JOIN UserDataTable AS UDT on UDT.userID = U.userID WHERE username = '${req.params.user}'`)
         .then(user => {
