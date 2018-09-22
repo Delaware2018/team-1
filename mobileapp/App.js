@@ -23,10 +23,10 @@ const MainNavigator = createBottomTabNavigator(
     main: {
       screen: createBottomTabNavigator(
         {
-          Join: { screen: JoinScreen },
           Journey: { screen: JourneyScreen },
           Feed: { screen: StoryScreen },
-          Donate: { screen: DonationScreen }
+          Donate: { screen: DonationScreen },
+          Join: { screen: JoinScreen }
         },
         {
           tabBarPosition: 'bottom',
