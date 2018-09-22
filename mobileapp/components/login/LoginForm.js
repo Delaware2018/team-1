@@ -29,7 +29,7 @@ class LoginForm extends React.Component {
       .signInWithEmailAndPassword(email, password)
       .then(this.onLoginSuccess.bind(this))
       .catch(this.onLoginFail.bind(this));
-    this.props.navigation.navigate('Feed');
+    this.props.navigation.navigate('Join');
     // .catch(() => {
     //   firebase
     //     .auth()

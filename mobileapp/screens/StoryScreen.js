@@ -34,6 +34,18 @@ export default class StoryScreen extends React.Component {
     });
     console.log(this.state.data);
   }
+  renderSeparator = () => {
+    return (
+      <View
+        style={{
+          height: 1,
+          width: '86%',
+          backgroundColor: '#708690',
+          marginLeft: '14%'
+        }}
+      />
+    );
+  };
 
   render() {
     return (
@@ -72,6 +84,9 @@ export default class StoryScreen extends React.Component {
               </CardSection>
             </Card>
           )}
+          keyExtractor={item => item.artist}
+          ItemSeparatorComponent={this.renderSeparator}
+          ListHeaderComponent={this.renderHeader}
         />
       </View>
     );

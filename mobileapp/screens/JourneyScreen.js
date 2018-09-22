@@ -17,7 +17,9 @@ export default class JourneyScreen extends React.Component {
       <MaterialCommunityIcons name="view-list" size={25} color="#03A9F4" />
     )
   });
+
   async componentDidMount() {
+    this.forceUpdate();
     console.disableYellowBox = true;
     await axios
       .get(`http://localhost:5000/journey/vdkremezis`)

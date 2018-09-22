@@ -37,7 +37,6 @@ export default class DonationScreen extends React.Component {
       });
     //this.props.navigation.navigate('Journey');
   };
-
   componentWillMount() {
     console.disableYellowBox = true;
   }
