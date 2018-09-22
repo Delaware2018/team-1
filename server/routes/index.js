@@ -3,8 +3,14 @@ const router = require('express').Router();
 const { selectStatement, insertStatement } = require('./../db/index');
 
 router.get('/journey/:user', (req, res) => {
-    selectStatement(['U.memberSince', 'D.amount', 'D.dateOfDonation'], 'UsersTable AS U', `WHERE username = '${req.params.user}' INNER JOIN donations AS D on D.userID = U.userID`)
+    console.log(req.params.user);
+    //'U.memberSince',
+    selectStatement(['D.amount', 'D.dateOfDonation'], 'UsersTable AS U',` INNER JOIN donations AS D on D.userID = U.userID WHERE U.username = '${req.params.user}'`)
         .then(result => {
+            result.forEach(val => {
+                val.dateOfDonation = val.dateOfDonation.slice(0, val.dateOfDonation.indexOf('T'));
+            });
+            console.log(result);
             res.status(200).send(result);
         }).catch(error => {
             console.log(error);
