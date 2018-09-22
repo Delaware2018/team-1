@@ -10,8 +10,11 @@ class Homepage extends Component {
     state = {
         endpoint: "http://localhost:5000/",
         postToApp:{
-            post: null,
-            url: null
+            feedType:null,
+            feedName: null,
+            feedContent: null,
+            feedLocation: null, 
+            feedUrl: null
           },
     }
     postTextHandler = event => {
