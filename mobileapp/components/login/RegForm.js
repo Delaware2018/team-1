@@ -1,4 +1,5 @@
 import React from 'react';
+import firebase from 'firebase';
 import {
   StyleSheet,
   ScrollView,
@@ -12,7 +13,7 @@ import CardSection from '../../common/CardSection';
 import Spinner from '../../common/Spinner';
 import { withNavigation } from 'react-navigation';
 
-class RegistrationForm extends React.Component {
+class RegForm extends React.Component {
   state = {
     username: '',
     email: '',
@@ -20,9 +21,17 @@ class RegistrationForm extends React.Component {
     error: '',
     loading: false
   };
-  onButtonPress() {
+  async onButtonPress() {
     const { email, password } = this.state;
     this.setState({ error: '', loading: true });
+
+    await firebase
+      .auth()
+      .createUserWithEmailAndPassword(email, password)
+      .then(() => {
+        this.props.setName(this.state.username);
+      })
+      .catch(this.onLoginFail.bind(this));
   }
 
   onLoginFail() {
@@ -46,7 +55,15 @@ class RegistrationForm extends React.Component {
     return (
       <View style={styles.container}>
         <StatusBar barStyle="light-content" />
-
+        <TextInput
+          placeholder="username"
+          placeholderTextColor="rgba(255,255,255,0.8)"
+          autoCapitalize="none"
+          autoCorrect={false}
+          style={styles.input}
+          onChangeText={name => this.setState({ username: name })}
+          value={this.state.username}
+        />
         <TextInput
           placeholder="user@email.com"
           placeholderTextColor="rgba(255,255,255,0.8)"
@@ -82,7 +99,7 @@ class RegistrationForm extends React.Component {
   }
 }
 
-export default withNavigation(RegistrationForm);
+export default withNavigation(RegForm);
 
 const styles = {
   container: {

@@ -1,4 +1,5 @@
 import React from 'react';
+import firebase from 'firebase';
 import {
   StyleSheet,
   ScrollView,
@@ -11,7 +12,6 @@ import {
 import CardSection from '../../common/CardSection';
 import Spinner from '../../common/Spinner';
 import { withNavigation } from 'react-navigation';
-import axios from 'axios';
 
 class LoginForm extends React.Component {
   state = {
@@ -20,11 +20,23 @@ class LoginForm extends React.Component {
     error: '',
     loading: false
   };
-  async onButtonPress() {
+  onButtonPress() {
     const { email, password } = this.state;
-
     this.setState({ error: '', loading: true });
-    this.props.navigation.navigate('main');
+
+    firebase
+      .auth()
+      .signInWithEmailAndPassword(email, password)
+      .then(this.onLoginSuccess.bind(this))
+      .catch(this.onLoginFail.bind(this));
+    this.props.navigation.navigate('Feed');
+    // .catch(() => {
+    //   firebase
+    //     .auth()
+    //     .createUserWithEmailAndPassword(email, password)
+    //     .then(this.onLoginSuccess.bind(this))
+    //     .catch(this.onLoginFail.bind(this));
+    // });
   }
 
   onLoginFail() {
