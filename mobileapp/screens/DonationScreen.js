@@ -1,10 +1,13 @@
 import React from 'react';
-import { View, Text, TextInput } from 'react-native';
-import { Button } from 'react-native-elements';
+import { View, Text, TextInput, YellowBox } from 'react-native';
+import { Input } from 'react-native-elements';
 import axios from 'axios';
 import { CreditCardInput } from 'react-native-credit-card-input';
 import { FontAwesome } from '@expo/vector-icons';
 import Header from '../common/Header';
+import Button from '../common/Button';
+import CardSection from '../common/CardSection';
+YellowBox.ignoreWarnings(['Warning: ReactNative.createElement']);
 export default class DonationScreen extends React.Component {
   static navigationOptions = ({ navigation }) => ({
     headerTitle: 'Settings',
@@ -14,36 +17,28 @@ export default class DonationScreen extends React.Component {
     message: null,
     amount: 0
   };
-  async componentDidMount() {
-    console.log('1');
+
+  onPayment = async () => {
     await axios
       .post(`http://localhost:5000/donation`, {
         name: 'vdkremezis',
-        amount: 100
+        amount: this.state.amount
       })
       .then(response => response.data)
       .then(res => {
-        this.setState({ message: 'kkkkkkk' });
+        this.setState({ message: 'payment processed' });
       });
-    console.log(this.state.message);
+  };
+
+  componentWillMount() {
+    console.disableYellowBox = true;
   }
 
   render() {
     return (
       <View>
         <Header headerText="Donation" />
-        <TextInput
-          style={styles.input}
-          placeholder="Amount"
-          placeholderTextColor="rgba(255,255,255,0.8)"
-          returnKeyType="next"
-          onSubmitEditing={() => this.passwordInput.focus()}
-          keyboardType="email-address"
-          autoCapitalize="none"
-          autoCorrect={false}
-          onChangeText={amount => this.setState({ amount })}
-          value={this.state.email}
-        />
+        <View style={{ padding: 10 }} />
         <CreditCardInput
           autoFocus
           requiresName
@@ -57,6 +52,39 @@ export default class DonationScreen extends React.Component {
           placeholderColor={'darkgray'}
           onChange={formData => (this.formData = formData)}
         />
+
+        <View
+          style={{
+            flexDirection: 'column',
+            justifyContent: 'center',
+            padding: 25
+          }}
+        >
+          <Text
+            style={{
+              textAlign: 'center',
+              fontWeight: 'bold',
+              alignItems: 'center'
+            }}
+          >
+            All Donations are not refundable
+          </Text>
+        </View>
+        <TextInput
+          placeholder="Amount"
+          placeholderTextColor="rgba(0,0,0,0.7)"
+          returnKeyType="next"
+          onSubmitEditing={() => this.passwordInput.focus()}
+          autoCapitalize="none"
+          autoCorrect={false}
+          style={styles.input}
+          onChangeText={amount => this.setState({ amount })}
+          value={this.state.amount}
+        />
+
+        <CardSection>
+          <Button onPress={() => this.onPayment()}>Donate!</Button>
+        </CardSection>
       </View>
     );
   }
