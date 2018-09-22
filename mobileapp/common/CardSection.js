@@ -9,7 +9,7 @@ const styles = {
     borderBottomWidth: 1,
     padding: 5,
     backgroundColor: '#fff',
-    justifyContent: 'space-between',
+    justifyContent: 'space-around',
     flexDirection: 'row',
     borderColor: '#ddd',
     position: 'relative'

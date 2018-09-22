@@ -1,4 +1,4 @@
-/****** Object:  StoredProcedure [dbo].[populateTables]    Script Date: 9/22/2018 7:41:07 AM ******/
+/****** Object:  StoredProcedure [dbo].[populateTables]    Script Date: 9/22/2018 10:40:14 AM ******/
 SET ANSI_NULLS ON
 GO
 
@@ -18,6 +18,7 @@ BEGIN
 	exec [dbo].[populateChapters];
 	exec [dbo].[populateDonations];
 	exec [dbo].[populateUsersTable];
+	exec [dbo].[populateFeeds];
 
 END
 GO
