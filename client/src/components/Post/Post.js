@@ -11,10 +11,10 @@ import {
 } from "react-bootstrap";
 
 const post = props => {
-  return (
-    <Jumbotron>
+    return (
+    <Jumbotron style={styles.container}>
       <FormGroup controlId="formControlsTextarea">
-        <ControlLabel>My Post</ControlLabel>
+        <ControlLabel style={styles.label}>New Feed</ControlLabel>
         <Grid>
             <Row>
               <Col md={2}>
@@ -22,12 +22,10 @@ const post = props => {
               </Col>
               <Col md={10}>
                 <FormGroup controlId="formControlsSelect">
-                  <FormControl componentClass="select" placeholder="select" name='feedType' onChange={props.textHandler}>
+                  <FormControl style={styles.inputs} componentClass="select" placeholder="select" name='feedType' onChange={props.textHandler}>
                     <option value="...">...</option>
                     <option value="Post">Post</option>
                     <option value="Event">Event</option>
-                    <option value="URL">URL</option>
-                    <option value="Location">Location</option>
                   </FormControl>
                 </FormGroup>
               </Col>
@@ -37,7 +35,7 @@ const post = props => {
               <p>Title</p>
             </Col>
             <Col md={10}>
-              <FormControl name="feedName" placeholder="Title..." onChange={props.textHandler}/>
+              <FormControl style={styles.inputs} name="feedName" placeholder="Title..." onChange={props.textHandler}/>
             </Col>
           </Row>
             <Row>
@@ -58,7 +56,7 @@ const post = props => {
           </Row>
           <Row>
             <Col md={2}>
-              <p>Post</p>
+                <p style={styles.font}>Content</p>
             </Col>
             <Col md={10}>
               <FormControl
@@ -75,5 +73,31 @@ const post = props => {
     </Jumbotron>
   );
 };
+
+const styles = {
+
+    label: {
+
+        fontSize: 30,
+        marginBottom: 25
+
+    },
+
+    container: {
+
+        backgroundColor:'#03A9F4'
+
+    },
+
+    inputs: {
+
+        width: '50%',
+
+    }
+
+
+
+
+}
 
 export default post;

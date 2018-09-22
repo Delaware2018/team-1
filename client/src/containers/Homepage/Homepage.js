@@ -38,8 +38,8 @@ class Homepage extends Component {
           <Row>
             <Col md={2} />
             <Col md={8}>
-              {/* <Post feedPost={this.sendMyPostToDatabase} textHandler={this.postTextHandler}/> */}
-                <Analytics/>
+                <Post feedPost={this.sendMyPostToDatabase} textHandler={this.postTextHandler}/> 
+                 {/* <Analytics/>*/}
             </Col>
             <Col md={2} />
           </Row>
