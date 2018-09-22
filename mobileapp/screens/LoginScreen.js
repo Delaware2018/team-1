@@ -49,7 +49,7 @@ const styles = {
     width: 160,
     textAlign: 'center',
     opacity: 0.9,
-    fontSize: 25,
+    fontSize: 30,
     fontWeight: 'bold'
   },
   joinContainer: {

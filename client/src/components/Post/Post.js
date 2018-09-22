@@ -12,10 +12,10 @@ import {
 } from "react-bootstrap";
 
 const post = props => {
-  return (
-    <Jumbotron>
+    return (
+    <Jumbotron style={styles.container}>
       <FormGroup controlId="formControlsTextarea">
-        <ControlLabel>My Post</ControlLabel>
+        <ControlLabel style={styles.label}>New Feed</ControlLabel>
         <Grid>
           <Row>
             <Col md={2}>
@@ -76,7 +76,7 @@ const post = props => {
           </Row>
           <Row>
             <Col md={2}>
-              <p>Post</p>
+                <p style={styles.font}>Content</p>
             </Col>
             <Col md={10}>
               <FormControl
@@ -103,5 +103,31 @@ const post = props => {
     </Jumbotron>
   );
 };
+
+const styles = {
+
+    label: {
+
+        fontSize: 30,
+        marginBottom: 25
+
+    },
+
+    container: {
+
+        backgroundColor:'#03A9F4'
+
+    },
+
+    inputs: {
+
+        width: '50%',
+
+    }
+
+
+
+
+}
 
 export default post;
