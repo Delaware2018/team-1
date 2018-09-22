@@ -1,28 +1,16 @@
 const sequelize = require('./../config/database');
 
-const insertStatement = (attributes, column, table) => {
+const updateStatement = (column, table, value, username) => {
     return new Promise((resolve, reject) => {
-        let user = Object.values(attributes);
 
-        let values;
-        if (typeof user[0] === 'string')
-            values = "'" + user[0] + "'" ;
-        else
-            values = user[0];
-
-        for (let i = 1; i < user.length; i++) {
-            if (typeof user[i] === 'string')
-                values = values + ", '" + user[i] + "' ";
-            else
-                values = values + ', ' + user[i];
-        }
-
-        sequelize.query(`UPDATE ${table}.${column} SET ${values}`, { type: sequelize.QueryTypes.UPDATE })
+        sequelize.query(`UPDATE ${table} set ${column} = ${value} where username = '${username}'`, { type: sequelize.QueryTypes.UPDATE })
             .then(result => {
+                console.log("success");
                 resolve(result);
-            }).catch((error) => {
+            })
+            .catch((error) => {
                 console.log(error);
-                switch(error.original.code){
+                switch (error.original.code) {
                     case 'ELOGIN':
                         let IPAddress = error.original.message.match(/\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b/);
                         reject(`Client with IP Address, ${IPAddress[0]}, needs to be given access.`);
@@ -37,4 +25,4 @@ const insertStatement = (attributes, column, table) => {
     });
 };
 
-export default insertStatement;
+export default updateStatement;
