@@ -32,8 +32,6 @@ const post = props => {
                   <option value="...">...</option>
                   <option value="Post">Post</option>
                   <option value="Event">Event</option>
-                  <option value="URL">URL</option>
-                  <option value="Location">Location</option>
                 </FormControl>
               </FormGroup>
             </Col>
@@ -69,7 +67,7 @@ const post = props => {
             <Col md={10}>
               <FormControl
                 name="feedUrl"
-                placeholder="Enter URL to share..."
+                placeholder="Enter URL link..."
                 onChange={props.textHandler}
               />
             </Col>
@@ -92,7 +90,7 @@ const post = props => {
           <Row>
             <Col  xsOffset={8} md={1}>
               <ButtonToolbar>
-                <Button bsSize="large" bsStyle='Primary' onClick={props.feedPost}>
+                <Button bsSize="large" onClick={props.feedPost}>
                   Post To All Users
                 </Button>
               </ButtonToolbar>
@@ -107,27 +105,14 @@ const post = props => {
 const styles = {
 
     label: {
-
         fontSize: 30,
         marginBottom: 25
-
     },
-
-    container: {
-
-        backgroundColor:'#03A9F4'
-
-    },
-
     inputs: {
 
         width: '50%',
 
     }
-
-
-
-
 }
 
 export default post;
