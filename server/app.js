@@ -29,8 +29,8 @@ io.on('connection', socket => {
         };
         insertStatement(feed, 'feeds')
             .then((newFeed) => {
-                //io.emit('createFeed', newFeed);
-                //callback('Got your story');
+                io.emit('createFeed', feed);
+                callback('Got your story');
                 console.log("data inserted");
             })
             .catch((error) => {
