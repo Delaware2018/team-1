@@ -13,7 +13,6 @@ router.get('/journey/:user', (req, res) => {
 });
 
 router.post('/donation', (req, res) => {
-    
     selectStatement(['userID'], 'UsersTable', `WHERE username = '${req.body.name}'`)
         .then(user => {
             if (user.length === 1) {
