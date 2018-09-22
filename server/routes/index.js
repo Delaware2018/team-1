@@ -2,8 +2,8 @@ const router = require('express').Router();
 
 const { selectStatement } = require('./../db/index');
 
-router.get('/story', (req, res) => {
-    selectStatement(['U.signedUp', 'D.donationAmount', 'D.dateDonated'], 'UsersTable AS U', `WHERE username = '${req.body.username}' INNER JOIN DonationTable AS D on D.userID = U.userID`)
+router.post('/journey', (req, res) => {
+    selectStatement(['U.memberSince', 'D.amount', 'D.dateOfDonation'], 'UsersTable AS U', `WHERE username = '${req.body.username}' INNER JOIN donations AS D on D.userID = U.userID`)
         .then(result => {
             res.status(200).send(result);
         }).catch(error => {
