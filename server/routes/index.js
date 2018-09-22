@@ -20,7 +20,7 @@ router.post('/donation', (req, res) => {
                 donation.type = 'creditCard';
                 donation.dateOfDonation = '2018-09-21';
 
-                insertStatement(req.body, 'UsersTable').then((result) => {
+                insertStatement(donation, 'donations').then((result) => {
                     res.status(200).send(true);
                 });
             } else {
