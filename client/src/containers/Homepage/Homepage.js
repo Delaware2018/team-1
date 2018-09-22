@@ -36,22 +36,14 @@ class Homepage extends Component {
     this.setState({page: false});
   }
   postTextHandler = event => {
-    // const myLocalReplacement = this.state.postToApp;
-    // console.log(this.state.postToApp);
-    // myLocalReplacement[event.target.name] = event.target.value;
-    // console.log(myLocalReplacement);
-    // let pie = Object.assign({}, this.state.postToApp);
-    // pie[event.target.name] = event.target.value;
-    // this.setState({...this.state, postToApp[event.target.name]:{feedUrl: event.target.value}},()=>(console.log(this.state)));
-    // console.log( 'hell' + this.state.postToApp.feedName);
     const myLocalReplacement = this.state.postToApp;
     myLocalReplacement[event.target.name] = event.target.value;
-    this.setState({ myLocal: myLocalReplacement });
+    this.setState({ postToApp: myLocalReplacement });
   };
-  handle = event =>{
-    this.setState({feedName: event.target.value});
-    console.log(this.spostToApp)
-  }
+  // handle = event =>{
+  //   this.setState({feedName: event.target.value});
+  //   console.log(this.spostToApp)
+  // }
 
   sendMyPostToDatabase = () => {
     const socket = socketIOClient(this.state.endpoint);
