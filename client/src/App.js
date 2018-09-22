@@ -1,14 +1,18 @@
 import React, { Component } from 'react';
-import Wrap from './hoc/wrap';
+import Login from './containers/Login/Login';
 import './App.css';
 
 class App extends Component {
+  state = {
+    authorized: false 
+  }
+  authorizedUser(){
+    console.log(this.state.authorized);
+  }
   render() {
     return (
       <div className="App">
-        <Wrap>
-          <p>Hello</p>
-        </Wrap>
+        {this.state.authorized ? <p>Going well</p> : <Login author={this.authorizedUser} />}
       </div>
     );
   }

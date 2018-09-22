@@ -14,10 +14,10 @@ const port = process.env.PORT || 5000;
 io.on('connection', socket => {
     console.log("User has connected");
 
-    socket.on('sendNewStory', (newStory, callback) => {
+    socket.on('sendFeed', (newStory, callback) => {
         insertStatement(newStory, 'StoryTable');
 
-        io.emit('createNewStory', newStory);
+        io.emit('createFeed', newStory);
         callback('Got your story');
     });
 
