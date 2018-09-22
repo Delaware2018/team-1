@@ -22,8 +22,9 @@ io.on('connection', socket => {
       type: newFeed.feedType,
       feedName: newFeed.feedName,
       feedContent: newFeed.feedContent,
-      urlLink: newFeed.feedUrl,
+
       feedLocation: newFeed.feedLocation,
+      urlLink: newFeed.feedUrl,
       feedDate: new Date().toISOString()
     };
     insertStatement(feed, 'feeds')
@@ -45,7 +46,13 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 app.use(morgan('dev'));
-app.use(session({ secret: process.env.SESSION_SECRET, resave: false, saveUninitialized: true }));
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: true
+  })
+);
 
 app.use('/', indexRouter);
 app.use('/feed', feedRouter);

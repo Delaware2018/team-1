@@ -32,6 +32,7 @@ export default class StoryScreen extends React.Component {
       // this.setState({ data: this.state.data.push(feed) });
       console.log(this.state.data);
     });
+    console.log(this.state.data);
   }
 
   render() {
@@ -42,27 +43,25 @@ export default class StoryScreen extends React.Component {
           data={this.state.data}
           renderItem={({ item }) => (
             <Card>
-              <View style={{ flexDirection: 'row' }}>
+              <CardSection>
                 <View style={styles.thumbnailContainerStyle}>
                   <Image
                     style={styles.thumbnailStyle}
                     source={{
-                      uri:
-                        'https://bepositive.org/wp-content/uploads/2018/08/Danny-Feltwell-NYPD.jpg'
+                      uri: item.urlLink
                     }}
                   />
                 </View>
                 <View style={styles.headerContentStyle}>
-                  <Text style={styles.headerTextStyle}>{item.feedContent}</Text>
+                  <Text style={styles.headerTextStyle}>{item.feedName}</Text>
                 </View>
-              </View>
+              </CardSection>
 
               <CardSection>
                 <Image
                   style={styles.imageStyle}
                   source={{
-                    uri:
-                      'https://bepositive.org/wp-content/uploads/2018/08/Danny-Feltwell-NYPD.jpg'
+                    uri: item.urlLink
                   }}
                 />
               </CardSection>

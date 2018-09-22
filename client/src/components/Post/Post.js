@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
   Jumbotron,
   FormGroup,
@@ -9,10 +9,10 @@ import {
   Grid,
   Col,
   Row
-} from "react-bootstrap";
+} from 'react-bootstrap';
 
 const post = props => {
-    return (
+  return (
     <Jumbotron style={styles.container}>
       <FormGroup controlId="formControlsTextarea">
         <ControlLabel style={styles.label}>New Feed</ControlLabel>
@@ -74,11 +74,11 @@ const post = props => {
           </Row>
           <Row>
             <Col md={2}>
-                <p style={styles.font}>Content</p>
+              <p style={styles.font}>Content</p>
             </Col>
             <Col md={10}>
               <FormControl
-                style={{ height: "250px" }}
+                style={{ height: '250px' }}
                 name="feedContent"
                 componentClass="textarea"
                 placeholder="Post to be sent to apps"
@@ -86,9 +86,9 @@ const post = props => {
               />
             </Col>
           </Row>
-          <p></p>
+          <p />
           <Row>
-            <Col  xsOffset={8} md={1}>
+            <Col xsOffset={8} md={1}>
               <ButtonToolbar>
                 <Button bsSize="large" onClick={props.feedPost}>
                   Post To All Users
@@ -103,16 +103,13 @@ const post = props => {
 };
 
 const styles = {
-
-    label: {
-        fontSize: 30,
-        marginBottom: 25
-    },
-    inputs: {
-
-        width: '50%',
-
-    }
-}
+  label: {
+    fontSize: 30,
+    marginBottom: 25
+  },
+  inputs: {
+    width: '50%'
+  }
+};
 
 export default post;
