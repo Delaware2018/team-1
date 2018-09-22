@@ -6,7 +6,7 @@ const homepageNavbar = props => {
     <Navbar style={styles.navBar} inverse>
       <Navbar.Header>
         <Navbar.Brand>
-          <a href="/">B Positive</a>
+          <a  href="">B Positive</a>
         </Navbar.Brand>
         <Navbar.Toggle />
       </Navbar.Header>
@@ -29,10 +29,9 @@ const homepageNavbar = props => {
 
 const styles = {
   navBar:{
-    
     backgroundColor: '#1DA548',
     borderRadius: '0',
-    borderColor: 'transparent'
+    borderColor: 'transparent',
   },
   item:{
     color:'#F2C632'
