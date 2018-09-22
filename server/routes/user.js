@@ -47,8 +47,7 @@ router.post('/signup', (req, res) => {
 /* POST to login the user */
 router.post('/login', (req, res) => {
     if(!req.session.username) {
-        selectStatement(['username', 'password', 'email', 'phoneNumber', 'profilePic'], 'usersTable',
-            `WHERE username = '${req.body.username}'`)
+        selectStatement(['username', 'password'], 'UsersTable', `WHERE username = '${req.body.username}'`)
             .then((users) => {
                 if (users.length > 0) {
                     bcrypt.compare(req.body.password, users[0].password)
@@ -61,9 +60,9 @@ router.post('/login', (req, res) => {
                                 res.status(200).send(false);
                             }
                         }).catch((error) => {
-                        console.log(`Error in /login route. ${error}`);
-                        res.sendStatus(404);
-                    })
+                            console.log(`Error in /login route. ${error}`);
+                            res.sendStatus(404);
+                        });
                 } else {
                     res.status(200).send(false);
                 }
