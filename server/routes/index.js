@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const { twilio } = require('./../controllers/twilio');
 
 const { selectStatement, insertStatement } = require('./../db/index');
 
@@ -79,20 +80,18 @@ router.get('/referral/:user', (req, res) => {
         });
 });
 
-router.get('/shareLink/:chapter', (req, res) => {
-    selectStatement(['phoneNumber'], 'UsersTable', `WHERE chapterCode = '${req.params.code}'`)
-        .then(user => {
-            let donation = {
-                userID: user[0].userID,
-                type: 'creditCard',
-                dateOfDonation: `${new Date().toISOString()}`,
-                amount: req.body.amount
-            };
 
-            insertStatement(donation, 'donations')
-                .then((result) => {
-                    res.status(200).send(true);
-                });
+/* GET the users to notify them a new event opened up */
+/* query the phone number and chapter names from the user's in that chapter
+     forEach user text them a new event opened up for that event
+ */
+router.get('/shareLink/:chapter', (req, res) => {
+    selectStatement(['phoneNumber', 'C.chapterName'], 'UsersTable AS U', `INNER JOIN chapter AS C ON C.chapterCode = U.chapterCode WHERE chapterCode = '${req.params.code}'`)
+        .then(user => {
+            user.forEach(val => {
+                twilio(val.phoneNumber, `New event in ${val.chapterName}`)
+            });
+            res.sendStatus(200);
         })
         .catch(error => {
             console.log(error);

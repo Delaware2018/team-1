@@ -24,6 +24,4 @@ let twilioBatch = (phone, body) => {
         .then((message) => console.log(message.sid));
 };
 
-twilio('7186830434', 'hello');
-
-// module.exports = twilio;
+module.exports = twilio;
