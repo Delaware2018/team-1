@@ -42,7 +42,7 @@ class analytics extends Component {
   }
 
   initViz() {
-      const vizUrl = "https://us-east-1.online.tableau.com/t/bpositive/views/BePositive/Dashboard1?iframeSizedToWindow=true&:embed=y&:showAppBanner=false&:display_count=no&:showVizHome=no";
+    const vizUrl = "https://us-east-1.online.tableau.com/t/bpositive/views/BePositive/Dashboard1?iframeSizedToWindow=true&:embed=y&:showAppBanner=false&:display_count=no&:showVizHome=no";
     const vizContainer = this.vizContainer;
     let viz = new window.tableau.Viz(vizContainer, vizUrl);
   }
@@ -52,6 +52,7 @@ class analytics extends Component {
     return (
       <Wrap>
         {/* {viz} */}
+        <p>*For Windows Only*</p>
         <div
           ref={div => {
             this.vizContainer = div;
