@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TextInput, YellowBox } from 'react-native';
+import { View, Text, TextInput, YellowBox, Modal } from 'react-native';
 import { Input } from 'react-native-elements';
 import axios from 'axios';
 import { CreditCardInput } from 'react-native-credit-card-input';
@@ -15,7 +15,12 @@ export default class DonationScreen extends React.Component {
   });
   state = {
     message: null,
-    amount: 0
+    amount: 0,
+    modalVisible: false
+  };
+  closeModal = () => {
+    this.setState({ modalVisible: false, amount: 0 });
+    this.props.navigation.navigate('Journey');
   };
 
   onPayment = async () => {
@@ -26,8 +31,11 @@ export default class DonationScreen extends React.Component {
       })
       .then(response => response.data)
       .then(res => {
-        this.setState({ message: 'payment processed' });
+        this.setState({
+          modalVisible: true
+        });
       });
+    //this.props.navigation.navigate('Journey');
   };
 
   componentWillMount() {
@@ -85,6 +93,22 @@ export default class DonationScreen extends React.Component {
         <CardSection>
           <Button onPress={() => this.onPayment()}>Donate!</Button>
         </CardSection>
+        <Text style={styles.errorTextStyle}>{this.state.message}</Text>
+        <Modal
+          animationType="fade"
+          transparent={false}
+          visible={this.state.modalVisible}
+          onRequestClose={() => {
+            alert('Modal has been closed.');
+          }}
+        >
+          <Header />
+          <CardSection>
+            <Button onPress={() => this.closeModal()}>
+              Thank You for your ${this.state.amount} donation!
+            </Button>
+          </CardSection>
+        </Modal>
       </View>
     );
   }
@@ -98,5 +122,10 @@ const styles = {
     color: '#000',
     paddingHorizontal: 10,
     fontSize: 20
+  },
+  errorTextStyle: {
+    fontSize: 20,
+    alignSelf: 'center',
+    color: 'red'
   }
 };
