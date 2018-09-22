@@ -1,6 +1,5 @@
 import React from 'react';
-import { View, Text, FlatList, Image } from 'react-native';
-
+import { View, Text, FlatList, Image, YellowBox } from 'react-native';
 import { Entypo } from '@expo/vector-icons';
 import axios from 'axios';
 import SocketIOClient from 'socket.io-client';
@@ -8,7 +7,7 @@ import Header from '../common/Header';
 import Card from '../common/Card';
 import CardSection from '../common/CardSection';
 import Button from '../common/Button';
-
+YellowBox.ignoreWarnings(['Warning: ReactNative.createElement']);
 export default class StoryScreen extends React.Component {
   state = {
     data: []
@@ -19,6 +18,7 @@ export default class StoryScreen extends React.Component {
   });
 
   async componentDidMount() {
+    console.disableYellowBox = true;
     await axios
       .get(`http://localhost:5000/feed`)
       .then(response => response.data)

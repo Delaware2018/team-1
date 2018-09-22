@@ -11,6 +11,7 @@ import {
 import CardSection from '../../common/CardSection';
 import Spinner from '../../common/Spinner';
 import { withNavigation } from 'react-navigation';
+import axios from 'axios';
 
 class LoginForm extends React.Component {
   state = {
@@ -19,8 +20,14 @@ class LoginForm extends React.Component {
     error: '',
     loading: false
   };
-  onButtonPress() {
+  async onButtonPress() {
     const { email, password } = this.state;
+    await axios
+      .post(`http://localhost:5000/login`, { email, password })
+      .then(response => response.data)
+      .then(res => {
+        this.setState({ data: res });
+      });
     this.setState({ error: '', loading: true });
     this.props.navigation.navigate('main');
   }
