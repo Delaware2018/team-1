@@ -2,7 +2,7 @@ const router = require('express').Router();
 
 const { selectStatement, insertStatement } = require('./../db/index');
 
-const bcrypt = require('bcrypt');
+//const bcrypt = require('bcrypt');
 const saltRounds = 10;
 
 /* GET home page. */
@@ -16,22 +16,22 @@ router.post('/signup', (req, res) => {
         selectStatement(['username'], 'UsersTable', `WHERE username = '${req.body.username}'`)
             .then(user => {
                 if(user.length === 0) {
-                    bcrypt.hash(req.body.password, saltRounds).then((hash) => {
-                        let user = req.body;
+                    //bcrypt.hash(req.body.password, saltRounds).then((hash) => {
+                    //    let user = req.body;
 
-                        user.password = hash;
-                        user.memberSince = new Date().toISOString();
-                        user.subscriptionID = '';
-                        user.subscriptionAmount = '';
+                    //    user.password = hash;
+                    //    user.memberSince = new Date().toISOString();
+                    //    user.subscriptionID = '';
+                    //    user.subscriptionAmount = '';
 
-                        insertStatement(req.body, 'UsersTable').then((result) => {
-                            req.session.username = req.body.username;
-                            res.status(200).send(true);
-                        }).catch((error) => {
-                            console.log(`Error in /signup route. ${error}`);
-                            res.sendStatus(404);
-                        });
-                    });
+                    //    insertStatement(req.body, 'UsersTable').then((result) => {
+                    //        req.session.username = req.body.username;
+                    //        res.status(200).send(true);
+                    //    }).catch((error) => {
+                    //        console.log(`Error in /signup route. ${error}`);
+                    //        res.sendStatus(404);
+                    //    });
+                    //});
                 } else {
                     res.status(200).send(false);
                 }
@@ -50,19 +50,19 @@ router.post('/login', (req, res) => {
         selectStatement(['username', 'password'], 'UsersTable', `WHERE username = '${req.body.username}'`)
             .then((users) => {
                 if (users.length > 0) {
-                    bcrypt.compare(req.body.password, users[0].password)
-                        .then(function (passwordsMatch) {
-                            console.log(passwordsMatch);
-                            if (passwordsMatch) {
-                                req.session.username = req.body.username;
-                                res.status(200).send(true);
-                            } else {
-                                res.status(200).send(false);
-                            }
-                        }).catch((error) => {
-                            console.log(`Error in /login route. ${error}`);
-                            res.sendStatus(404);
-                        });
+                    //bcrypt.compare(req.body.password, users[0].password)
+                    //    .then(function (passwordsMatch) {
+                    //        console.log(passwordsMatch);
+                    //        if (passwordsMatch) {
+                    //            req.session.username = req.body.username;
+                    //            res.status(200).send(true);
+                    //        } else {
+                    //            res.status(200).send(false);
+                    //        }
+                    //    }).catch((error) => {
+                    //        console.log(`Error in /login route. ${error}`);
+                    //        res.sendStatus(404);
+                    //    });
                 } else {
                     res.status(200).send(false);
                 }
