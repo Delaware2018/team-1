@@ -92,7 +92,7 @@ const post = props => {
           <Row>
             <Col  xsOffset={8} md={1}>
               <ButtonToolbar>
-                <Button bsSize="large" bsStyle='Primary' onClick={props.feedPost}>
+                <Button bsSize="large" onClick={props.feedPost}>
                   Post To All Users
                 </Button>
               </ButtonToolbar>
@@ -110,24 +110,12 @@ const styles = {
 
         fontSize: 30,
         marginBottom: 25
-
     },
-
-    container: {
-
-        backgroundColor:'#03A9F4'
-
-    },
-
     inputs: {
 
         width: '50%',
 
     }
-
-
-
-
 }
 
 export default post;
