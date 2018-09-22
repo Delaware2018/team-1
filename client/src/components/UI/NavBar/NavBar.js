@@ -1,23 +1,28 @@
-import React from "react";
-import { Navbar } from "react-bootstrap";
+import React from 'react';
+import { Navbar } from 'react-bootstrap';
 
 const navBar = () => {
   return (
     <Navbar inverse style={styles.navBar}>
       <Navbar.Header>
         <Navbar.Brand>
-          <a href="/">B Positive</a>
+          <a href="/">
+            <p style={styles.item}>Be Positive</p>
+          </a>
         </Navbar.Brand>
         <Navbar.Toggle />
-      </Navbar.Header>   
-      </Navbar>    
+      </Navbar.Header>
+    </Navbar>
   );
 };
 const styles = {
-  navBar:{
+  navBar: {
     backgroundColor: '#1DA548',
     borderRadius: '0',
-    borderColor: 'transparent',
+    borderColor: 'transparent'
+  },
+  item: {
+    color: '#F2C632'
   }
-}
+};
 export default navBar;

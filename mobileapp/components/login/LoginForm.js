@@ -1,4 +1,5 @@
 import React from 'react';
+import firebase from 'firebase';
 import {
   StyleSheet,
   ScrollView,
@@ -22,7 +23,20 @@ class LoginForm extends React.Component {
   onButtonPress() {
     const { email, password } = this.state;
     this.setState({ error: '', loading: true });
-    this.props.navigation.navigate('main');
+
+    firebase
+      .auth()
+      .signInWithEmailAndPassword(email, password)
+      .then(this.onLoginSuccess.bind(this))
+      .catch(this.onLoginFail.bind(this));
+    this.props.navigation.navigate('Feed');
+    // .catch(() => {
+    //   firebase
+    //     .auth()
+    //     .createUserWithEmailAndPassword(email, password)
+    //     .then(this.onLoginSuccess.bind(this))
+    //     .catch(this.onLoginFail.bind(this));
+    // });
   }
 
   onLoginFail() {

@@ -65,6 +65,8 @@ CREATE TABLE [dbo].[usersTable](
 	[memberSince] [nvarchar](50) NULL,
 	[subscriptionID] [nvarchar](50) NULL,
 	[subscriptionAmount] [decimal](18, 2) NULL,
+	[ChapterMemberCode] [nvarchar](50) NULL,
+	[phoneNumber] [bigint] NULL,
  CONSTRAINT [PK_usersTable] PRIMARY KEY CLUSTERED 
 (
 	[userID] ASC
