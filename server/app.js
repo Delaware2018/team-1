@@ -5,7 +5,6 @@ const cors = require('cors');
 const morgan = require('morgan');
 const session = require('express-session');
 const bodyParser = require('body-parser');
-
 const indexRouter = require('./routes/index');
 const feedRouter = require('./routes/feed');
 const userRouter = require('./routes/user');
