@@ -42,25 +42,34 @@ router.post('/signup', (req, res) => {
 /* POST to login the user */
 router.post('/login', (req, res) => {
     if(!req.session.username) {
-        selectStatement(['username', 'password'], 'UsersTable', `WHERE username = '${req.body.username}'`)
+        selectStatement(['username', 'password'], 'UsersTable', `WHERE email = '${req.body.email}'`)
             .then((users) => {
                 if (users.length > 0) {
-                    bcrypt.compare(req.body.password, users[0].password)
-                       .then(function (passwordsMatch) {
-                           console.log(passwordsMatch);
-                           if (passwordsMatch) {
-                               req.session.username = req.body.username;
-                               res.status(200).send(true);
-                           } else {
-                               res.status(200).send(false);
-                           }
-                       }).catch((error) => {
-                           console.log(`Error in /login route. ${error}`);
-                           res.sendStatus(404);
-                       });
+                    // bcrypt.compare(req.body.password, users[0].password)
+                    //    .then(function (passwordsMatch) {
+                    //        console.log(passwordsMatch);
+                    //        if (passwordsMatch) {
+                    //            req.session.username = req.body.username;
+                    //            res.status(200).send(true);
+                    //        } else {
+                    //            res.status(200).send(false);
+                    //        }
+                    //    }).catch((error) => {
+                    //        console.log(`Error in /login route. ${error}`);
+                    //        res.sendStatus(404);
+                    //    });
+
+                    if(users[0].password === req.body.password){
+                        res.status(200).send(true);
+                    } else {
+                        res.status(200).send(false);
+                    }
                 } else {
                     res.status(200).send(false);
                 }
+            }).catch(error => {
+                res.sendStatus(404);
+                console.log(error);
             });
         return;
     }
