@@ -7,7 +7,7 @@ const session = require('express-session');
 const bodyParser = require('body-parser');
 
 const indexRouter = require('./routes/index');
-//const feedRouter = require('./routes/feed');
+const feedRouter = require('./routes/feed');
 const userRouter = require('./routes/user');
 
 const { insertStatement, selectStatement } = require('./db');
@@ -49,7 +49,7 @@ app.use(morgan('dev'));
 // app.use(session({ secret: process.env.SESSION_SECRET, resave: false, saveUninitialized: true }));
 
 app.use('/', indexRouter);
-//app.use('/feed', feedRouter);
+app.use('/feed', feedRouter);
 app.use('/users', userRouter);
 
 http.listen(port);
