@@ -1,11 +1,16 @@
 const router = require('express').Router();
+const { twilio } = require('./../controllers/twilio');
 
 const { selectStatement, insertStatement } = require('./../db/index');
 
 /* GET the journey for an individual user */
+/* query all the donations the user donated
+     forEach result change the format of the date
+     send the donations to the clinet
+ */
 router.get('/journey/:user', (req, res) => {
     //'U.memberSince',
-    selectStatement(['D.amount', 'D.dateOfDonation'], 'UsersTable AS U',` INNER JOIN donations AS D on D.userID = U.userID WHERE U.username = '${req.params.user}' ORDER BY D.dateOfDonation`)
+    selectStatement(['D.amount', 'D.dateOfDonation'], 'UsersTable AS U',` INNER JOIN donations AS D on D.userID = U.userID WHERE U.username = '${req.params.user}' ORDER BY D.dateOfDonation DESC`)
         .then(result => {
             result.forEach(val => {
                 val.dateOfDonation = val.dateOfDonation.slice(0, val.dateOfDonation.indexOf('T'));
@@ -19,6 +24,14 @@ router.get('/journey/:user', (req, res) => {
 });
 
 /* POST the donation amount */
+/* query the userID from the user that donated
+     if user exists
+       create a donation object formatted to fit the database
+       insert donation object into database
+         tell client it's great
+     else
+       tell the client the user doesn't exist
+ */
 router.post('/donation', (req, res) => {
     selectStatement(['userID'], 'UsersTable', `WHERE username = '${req.body.name}'`)
         .then(user => {
@@ -67,8 +80,23 @@ router.get('/referral/:user', (req, res) => {
         });
 });
 
-router.get('/shareLink/:chapter', (req, res) => {
 
+/* GET the users to notify them a new event opened up */
+/* query the phone number and chapter names from the user's in that chapter
+     forEach user text them a new event opened up for that event
+ */
+router.get('/shareLink/:chapter', (req, res) => {
+    selectStatement(['phoneNumber', 'C.chapterName'], 'UsersTable AS U', `INNER JOIN chapter AS C ON C.chapterCode = U.chapterCode WHERE chapterCode = '${req.params.code}'`)
+        .then(user => {
+            user.forEach(val => {
+                twilio(val.phoneNumber, `New event in ${val.chapterName}`)
+            });
+            res.sendStatus(200);
+        })
+        .catch(error => {
+            console.log(error);
+            res.sendStatus(404);
+        });
 });
 
 module.exports = router;

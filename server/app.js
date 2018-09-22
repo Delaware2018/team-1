@@ -13,6 +13,12 @@ const { insertStatement, selectStatement } = require('./db');
 
 const port = process.env.PORT || 5000;
 
+/*
+   setup a socket connection
+
+   sendFeed: gets a feed from the client
+   createFeed: sends a feed to all the clients
+ */
 io.on('connection', socket => {
   console.log('User has connected');
 
@@ -30,7 +36,6 @@ io.on('connection', socket => {
     insertStatement(feed, 'feeds')
       .then(newFeed => {
         io.emit('createFeed', feed);
-        console.log('data inserted');
       })
       .catch(error => {
         console.log(error);

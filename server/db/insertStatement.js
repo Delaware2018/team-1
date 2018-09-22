@@ -1,5 +1,13 @@
 const sequelize = require('./../config/database');
 
+/* INSERT INTO table VALUES(...) */
+/*
+   get the values of the object passed
+   create a string values which contains all the values with a comma
+   Do a query to insert into database
+     if error
+       check for the code and let the user know in a cleaner way
+ */
 const insertStatement = (attributes, table) => {
     return new Promise((resolve, reject) => {
         let user = Object.values(attributes);

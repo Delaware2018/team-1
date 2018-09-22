@@ -55,6 +55,8 @@ let data = [
     }
 ];
 
+
+/* Seeds the UsersTable with users */
 data.forEach(val =>  {
     bcrypt.hash(val.password, saltRounds)
         .then(hash => {
