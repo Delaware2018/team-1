@@ -6,14 +6,17 @@ const homepageNavbar = props => {
     <Navbar inverse>
       <Navbar.Header>
         <Navbar.Brand>
-          <a href="#brand">Fake Twitter</a>
+          <a href="/">B Positive</a>
         </Navbar.Brand>
         <Navbar.Toggle />
       </Navbar.Header>
       <Navbar.Collapse>
-        <Nav pullRight>
+        <Nav>
+          <NavItem eventKey={1} href="#">
+            Post
+          </NavItem>
           <NavItem eventKey={2} href="#">
-            My Profile
+            Analytics
           </NavItem>
         </Nav>
       </Navbar.Collapse>
