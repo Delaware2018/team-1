@@ -16,7 +16,7 @@ io.on('connection', socket => {
 
     socket.on('sendFeed', (newStory, callback) => {
         insertStatement(newStory, 'StoryTable');
-
+        console.log("sth");
         io.emit('createFeed', newStory);
         callback('Got your story');
     });
