@@ -33,6 +33,7 @@ export default class DonationScreen extends React.Component {
       <View>
         <Header headerText="Donation" />
         <TextInput
+          style={styles.input}
           placeholder="Amount"
           placeholderTextColor="rgba(255,255,255,0.8)"
           returnKeyType="next"
@@ -60,3 +61,14 @@ export default class DonationScreen extends React.Component {
     );
   }
 }
+
+const styles = {
+  input: {
+    height: 40,
+    backgroundColor: 'rgba(255,255,255,0.2)',
+    marginBottom: 10,
+    color: '#000',
+    paddingHorizontal: 10,
+    fontSize: 20
+  }
+};
