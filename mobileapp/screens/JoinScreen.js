@@ -23,7 +23,7 @@ export default class JoinScreen extends React.Component {
         <View style={styles.logoContainer}>
           <Image
             style={styles.logo}
-            source={require('../images/bepositive.jpg')}
+            source={require('../images/bepositive.png')}
           />
           <Text style={styles.title}>Join a Chapter</Text>
         </View>

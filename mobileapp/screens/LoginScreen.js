@@ -15,7 +15,7 @@ export default class LoginScreen extends React.Component {
         <View style={styles.logoContainer}>
           <Image
             style={styles.logo}
-            source={require('../images/bepositive.jpg')}
+            source={require('../images/bepositive.png')}
           />
           <Text style={styles.title}>Be Positive</Text>
         </View>
@@ -49,7 +49,7 @@ const styles = {
     width: 160,
     textAlign: 'center',
     opacity: 0.9,
-    fontSize: 35,
+    fontSize: 25,
     fontWeight: 'bold'
   },
   joinContainer: {
