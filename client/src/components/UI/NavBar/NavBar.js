@@ -1,16 +1,20 @@
-import React from "react";
-import { Navbar } from "react-bootstrap";
+import React from 'react';
+import { Navbar } from 'react-bootstrap';
 
 const navBar = () => {
   return (
+<<<<<<< HEAD
+    <Navbar inverse>
+=======
     <Navbar inverse style={styles.navBar}>
+>>>>>>> f466a5195294ba72bd9efe75b1293e7b59acd47a
       <Navbar.Header>
         <Navbar.Brand>
-          <a href="/">B Positive</a>
+          <a href="/">Be Positive</a>
         </Navbar.Brand>
         <Navbar.Toggle />
-      </Navbar.Header>   
-      </Navbar>    
+      </Navbar.Header>
+    </Navbar>
   );
 };
 const styles = {

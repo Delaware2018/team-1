@@ -19,8 +19,7 @@ class JoinForm extends React.Component {
     loading: false
   };
   onButtonPress() {
-    const { email, password } = this.state;
-    this.setState({ error: '', loading: true });
+    this.props.navigation.navigate('Feed');
   }
 
   onLoginFail() {
