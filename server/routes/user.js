@@ -6,6 +6,15 @@ const bcrypt = require('bcrypt');
 const saltRounds = 10;
 
 /* POST the user into the database for signing up */
+/* if session doesn't exist
+     see if the username exists
+       if the username doesn't exist
+         encrypt and salt the password and store the new user in the database
+           create a session for the user
+       else tell the client that the user does exist
+     return
+   tell the user that the user is already logged in
+ */
 router.post('/signup', (req, res) => {
     if(!req.session.username) {
         selectStatement(['username'], 'UsersTable', `WHERE username = '${req.body.username}'`)
@@ -40,30 +49,37 @@ router.post('/signup', (req, res) => {
 });
 
 /* POST to login the user */
+/* if session doesn't exist
+     get the username and password associated to the email
+       if the email exists
+         compare the encrypted password and the password the user provided
+           if passwords match
+             create a session for the user and tell the client it's good
+           else tell the client that the username or password doesn't match
+       else
+         the username or password doesn't exist
+     return
+
+    tell the user that the user is already logged in
+ */
 router.post('/login', (req, res) => {
     if(!req.session.username) {
         selectStatement(['username', 'password'], 'UsersTable', `WHERE email = '${req.body.email}'`)
             .then((users) => {
-                if (users.length > 0) {
-                    // bcrypt.compare(req.body.password, users[0].password)
-                    //    .then(function (passwordsMatch) {
-                    //        console.log(passwordsMatch);
-                    //        if (passwordsMatch) {
-                    //            req.session.username = req.body.username;
-                    //            res.status(200).send(true);
-                    //        } else {
-                    //            res.status(200).send(false);
-                    //        }
-                    //    }).catch((error) => {
-                    //        console.log(`Error in /login route. ${error}`);
-                    //        res.sendStatus(404);
-                    //    });
-
-                    if(users[0].password === req.body.password){
-                        res.status(200).send(true);
-                    } else {
-                        res.status(200).send(false);
-                    }
+                if (users.length === 0) {
+                    bcrypt.compare(req.body.password, users[0].password)
+                       .then(function (passwordsMatch) {
+                           console.log(passwordsMatch);
+                           if (passwordsMatch) {
+                               req.session.username = req.body.username;
+                               res.status(200).send(true);
+                           } else {
+                               res.status(200).send(false);
+                           }
+                       }).catch((error) => {
+                           console.log(`Error in /login route. ${error}`);
+                           res.sendStatus(404);
+                       });
                 } else {
                     res.status(200).send(false);
                 }
@@ -78,6 +94,11 @@ router.post('/login', (req, res) => {
 });
 
 /* GET the logout */
+/*
+   If the session exists
+     destroy the session
+   send a 200 status back to client
+ */
 router.get('/logout', (req, res) =>  {
     if(req.session.username) {
         req.session.destroy();
