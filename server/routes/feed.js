@@ -2,7 +2,7 @@ const router = require('express').Router();
 
 const { selectStatement, insertStatement } = require('./../db/index');
 
-router.get('/journey/:user', (req, res) => {
+router.get('/', (req, res) => {
     console.log(req.params.user);
     selectStatement(['*'], 'feeds', '')
         .then(result => {
