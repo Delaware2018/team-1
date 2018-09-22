@@ -11,7 +11,7 @@ const loginForms = props => {
         <Col md={8}>
           <Jumbotron>
             <ControlledTabs
-             props={props.author}
+             author={props.author}
             />
           </Jumbotron>
         </Col>
@@ -43,11 +43,11 @@ class ControlledTabs extends Component {
         onSelect={this.handleSelect}
         id="controlled-tab-example"
       >
-        <Tab eventKey={1} title="Sign In">
-          <Signin auth={this.props.author}/>
+        <Tab eventKey={1} title="Sign In" >
+          <Signin author={this.props.author}/>
         </Tab>
         <Tab eventKey={2} title="Sign Up">
-          <Signup auth={this.props.author}/>
+          <Signup author={this.props.author}/>
         </Tab>
       </Tabs>
     );
