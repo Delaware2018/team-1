@@ -20,8 +20,8 @@ $ cd team-1
 
 ### Server
 
-* Create a .env file in the server directory and fill out the details similar to sample.env
-* The tables can be created by creating the procedures on SQL Server Management Studio by using the procedures we provided 
+1. Create a .env file in the server directory and fill out the details similar to sample.env
+2. The tables can be created by creating the procedures on SQL Server Management Studio by using the procedures we provided 
 
 ```sh
 $ cd server
@@ -29,5 +29,19 @@ $ npm install
 $ npm start
 ```
 
+### Web Application
+
+```sh
+$ cd client
+$ npm install
+$ npm start
+```
+
 ### Mobile Application
 
+```sh
+$ cd mobileapp
+$ npm install
+$ npm install -g expo-cli
+$ npm start
+```
