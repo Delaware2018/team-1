@@ -5,7 +5,7 @@ const authToken = process.env.AUTH_TOKEN;
 const client = require('twilio')(accountSid, authToken);
 
 /* twilio code send a text to a number provided */
-let twilio = (phone, body) => {
+let text = (phone, body) => {
     client.messages
         .create({
             body: body,
