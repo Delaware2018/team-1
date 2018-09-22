@@ -22,12 +22,7 @@ class LoginForm extends React.Component {
   };
   async onButtonPress() {
     const { email, password } = this.state;
-    await axios
-      .post(`http://localhost:5000/login`, { email, password })
-      .then(response => response.data)
-      .then(res => {
-        this.setState({ data: res });
-      });
+
     this.setState({ error: '', loading: true });
     this.props.navigation.navigate('main');
   }
