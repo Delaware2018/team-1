@@ -1,9 +1,15 @@
 const sequelize = require('./../config/database');
 
+/* UPDATE table SET column = value */
+/*
+   Do a query to update the users in the database
+     if error
+       check for the code and let the user know in a cleaner way
+ */
 const updateStatement = (column, table, value, username) => {
     return new Promise((resolve, reject) => {
 
-        sequelize.query(`UPDATE ${table} set ${column} = ${value} where username = '${username}'`, { type: sequelize.QueryTypes.UPDATE })
+        sequelize.query(`UPDATE ${table} SET ${column} = ${value} where username = '${username}'`, { type: sequelize.QueryTypes.UPDATE })
             .then(result => {
                 console.log("success");
                 resolve(result);

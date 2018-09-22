@@ -1,5 +1,12 @@
 const sequelize = require('./../config/database');
 
+/* SELECT values FROM table */
+/*
+   create a string values which contains all the values with a comma
+   Do a query to insert into database
+     if error
+       check for the code and let the user know in a cleaner way
+ */
 const selectStatement = (attributes, table, whereStatement) => {
     return new Promise((resolve, reject) => {
         try {
