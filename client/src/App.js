@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Login from './containers/Login/Login';
+import Homepage from './containers/Homepage/Homepage';
 import './App.css';
 
 class App extends Component {
@@ -12,7 +13,10 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        {this.state.authorized ? <p>Going well</p> : <Login author={this.authorizedUser} />}
+      <Homepage/>
+      
+        {/* {this.state.authorized ? <p>Going well</p> : <Login author={this.authorizedUser} />} */}
+
       </div>
     );
   }
