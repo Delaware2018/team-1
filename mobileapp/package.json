@@ -9,11 +9,14 @@
     "eject": "expo eject"
   },
   "dependencies": {
+    "axios": "^0.18.0",
     "expo": "^30.0.1",
     "react": "16.3.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-30.0.0.tar.gz",
+    "react-native-credit-card-input": "^0.4.1",
     "react-native-elements": "^0.19.1",
     "react-navigation": "^2.16.0",
     "socket.io-client": "^2.1.1"
-  }
+  },
+  "proxy": "http://localhost:5000/"
 }

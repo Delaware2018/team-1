@@ -23,10 +23,10 @@ const MainNavigator = createBottomTabNavigator(
     main: {
       screen: createBottomTabNavigator(
         {
-          join: { screen: JoinScreen },
-          journey: { screen: JourneyScreen },
-          story: { screen: StoryScreen },
-          donation: { screen: DonationScreen }
+          Join: { screen: JoinScreen },
+          Journey: { screen: JourneyScreen },
+          Feed: { screen: StoryScreen },
+          Donate: { screen: DonationScreen }
         },
         {
           tabBarPosition: 'bottom',
@@ -44,7 +44,7 @@ const MainNavigator = createBottomTabNavigator(
   },
   {
     navigationOptions: {
-      tabBarVisible: false
+      tabBarVisible: true
     },
     lazyLoad: true
   }
