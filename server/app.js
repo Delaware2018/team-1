@@ -3,6 +3,7 @@ const http = require('http').createServer(app);
 const io = require('socket.io')(http);
 const cors = require('cors');
 const morgan = require('morgan');
+const session = require('express-session');
 const bodyParser = require('body-parser');
 
 const indexRouter = require('./routes/index');
@@ -47,6 +48,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 app.use(morgan('dev'));
+// app.use(session({ secret: process.env.SESSION_SECRET, resave: false, saveUninitialized: true }));
 
 app.use('/', indexRouter);
 //app.use('/feed', feedRouter);
