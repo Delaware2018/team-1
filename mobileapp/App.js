@@ -12,6 +12,7 @@ import JourneyScreen from './screens/JourneyScreen';
 import LoginScreen from './screens/LoginScreen';
 import RegScreen from './screens/RegScreen';
 import StoryScreen from './screens/StoryScreen';
+import firebase from 'firebase';
 
 const MainNavigator = createBottomTabNavigator(
   {
@@ -23,13 +24,20 @@ const MainNavigator = createBottomTabNavigator(
     main: {
       screen: createBottomTabNavigator(
         {
-          Journey: { screen: JourneyScreen },
-          Feed: { screen: StoryScreen },
-          Donate: { screen: DonationScreen },
-          Join: { screen: JoinScreen }
+          Join: { screen: JoinScreen },
+          land: {
+            screen: createBottomTabNavigator({
+              Journey: { screen: JourneyScreen },
+              Feed: { screen: StoryScreen },
+              Donate: { screen: DonationScreen }
+            })
+          }
         },
         {
           tabBarPosition: 'bottom',
+          navigationOptions: {
+            tabBarVisible: false
+          },
           tabBarOptions: {
             labelStyle: { fontSize: 12 },
             style: {
@@ -44,13 +52,25 @@ const MainNavigator = createBottomTabNavigator(
   },
   {
     navigationOptions: {
-      tabBarVisible: true
+      tabBarVisible: false
     },
     lazyLoad: true
   }
 );
 
 export default class App extends React.Component {
+  componentDidMount() {
+    this.forceUpdate();
+    const config = {
+      apiKey: 'AIzaSyCF9z_hOT2RVoi-eNe2h0RDMAjm5vEKJ5Y',
+      authDomain: 'code4good-84536.firebaseapp.com',
+      databaseURL: 'https://code4good-84536.firebaseio.com',
+      projectId: 'code4good-84536',
+      storageBucket: '',
+      messagingSenderId: '426248416399'
+    };
+    firebase.initializeApp(config);
+  }
   render() {
     return <MainNavigator />;
   }
