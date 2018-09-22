@@ -1,12 +1,8 @@
-# Level Up!
+# Level Up! (team 1)
 
 ## Our Goal
 
-To test the app the necessay tables have to be created. The app uses SQL Server to handle data. 
-In the server directory and into the procedures folder, the tables can be created by creating the procedures 
-on SQL Server Management Studio. Then the following procedures being executed will set up the database to interact with the app. 
-createAllTables
-populateAllTables
+Our mission is for B+ to stay connected with the contributers and to identify the unique donators.
 
 ## How to run
 
