@@ -18,12 +18,12 @@ export default class DonationScreen extends React.Component {
     console.log('1');
     await axios
       .post(`http://localhost:5000/donation`, {
-        name: 'eric',
+        name: 'vdkremezis',
         amount: 100
       })
       .then(response => response.data)
       .then(res => {
-        this.setState({ exist: res.message });
+        this.setState({ message: 'kkkkkkk' });
       });
     console.log(this.state.message);
   }

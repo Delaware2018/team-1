@@ -15,7 +15,7 @@ export default class RegScreen extends React.Component {
         <View style={styles.logoContainer}>
           <Image
             style={styles.logo}
-            source={require('../images/bepositive.jpg')}
+            source={require('../images/bepositive.png')}
           />
           <Text style={styles.title}>Be Positive</Text>
         </View>
