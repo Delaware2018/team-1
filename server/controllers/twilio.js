@@ -6,13 +6,13 @@ const client = require('twilio')(accountSid, authToken);
 
 /* twilio code send a text to a number provided */
 let twilio = (phone, body) => {
-    client.messages
-        .create({
-            body: body,
-            from: '+19082800331',
-            to: phone
-        })
-        .then((message) => console.log(message.sid));
+  client.messages
+    .create({
+      body: body,
+      from: '+19082800331',
+      to: phone
+    })
+    .then(message => console.log(message.sid));
 };
 
 module.exports = twilio;
