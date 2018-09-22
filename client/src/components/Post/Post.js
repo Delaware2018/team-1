@@ -32,8 +32,6 @@ const post = props => {
                   <option value="...">...</option>
                   <option value="Post">Post</option>
                   <option value="Event">Event</option>
-                  <option value="URL">URL</option>
-                  <option value="Location">Location</option>
                 </FormControl>
               </FormGroup>
             </Col>
@@ -69,7 +67,7 @@ const post = props => {
             <Col md={10}>
               <FormControl
                 name="feedUrl"
-                placeholder="Enter URL to share..."
+                placeholder="Enter URL link..."
                 onChange={props.textHandler}
               />
             </Col>
@@ -107,7 +105,6 @@ const post = props => {
 const styles = {
 
     label: {
-
         fontSize: 30,
         marginBottom: 25
     },
