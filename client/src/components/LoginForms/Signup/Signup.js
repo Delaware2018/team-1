@@ -111,7 +111,7 @@ const signup = props => {
         <Row>
           <Col md={4} mdOffset={8}>
             <ButtonToolbar>
-              <Button onClick={props.author}>Submit Sign Up</Button>
+              <Button onClick={props.author} >Submit Sign Up</Button>
             </ButtonToolbar>
           </Col>
         </Row>

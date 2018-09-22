@@ -1,23 +1,34 @@
 import React, { Component } from 'react';
+import {BrowserRouter} from 'react-router-dom'
 import Login from './containers/Login/Login';
 import Homepage from './containers/Homepage/Homepage';
+// import {} from 're'
 import './App.css';
 
 class App extends Component {
-  state = {
-    authorized: false 
+  constructor (props){
+    super(props);
+  
+    this.state = {
+        authorized: false
+      };
+    this.authorizedUser = this.authorizedUser.bind(this);
   }
-  authorizedUser(){
-    console.log(this.state.authorized);
+  state = {
+    authorized: null 
+  }
+  authorizedUser(event){
+    const aut = this.state.authorized;
+    this.setState({authorized: !aut})
   }
   render() {
     return (
+      <BrowserRouter>
       <div className="App">
-      <Homepage/>
-      
-        {/* {this.state.authorized ? <p>Going well</p> : <Login author={this.authorizedUser} />} */}
+        {this.state.authorized ? <Homepage/>: <Login author={ this.authorizedUser.bind(this)} />}
 
       </div>
+      </BrowserRouter>
     );
   }
 }

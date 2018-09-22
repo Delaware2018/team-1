@@ -1,5 +1,5 @@
 import React from "react";
-import { Navbar, Nav, NavItem } from "react-bootstrap";
+import { Navbar, Nav, MenuItem } from "react-bootstrap";
 
 const homepageNavbar = props => {
   return (
@@ -12,14 +12,19 @@ const homepageNavbar = props => {
       </Navbar.Header>
       <Navbar.Collapse>
         <Nav>
-          <NavItem eventKey={1} href="#">
-            Post
-          </NavItem>
-          <NavItem eventKey={2} href="#">
-            Analytics
-          </NavItem>
+            <MenuItem eventKey={1} href="#" onClick={props.pageRen}>
+              Post
+            </MenuItem>
+            <MenuItem eventKey={2} href="#" onClick={props.analyticRen}>
+              Analytics
+            </MenuItem>
+            <MenuItem eventKey={2} href="https://us-east-1.online.tableau.com/t/bpositive/views/BePositive/Dashboard1?iframeSizedToWindow=true&:embed=y&:showAppBanner=false&:display_count=no&:showVizHome=no" onClick={props.analyticRen}>
+              More Analytics
+            </MenuItem>
         </Nav>
       </Navbar.Collapse>
+      {/* <Route path="/" exact component={Posts} />
+      <Route path="/new-post" component={NewPost} /> */}
     </Navbar>
   );
 };
