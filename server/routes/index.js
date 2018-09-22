@@ -1,5 +1,5 @@
 const router = require('express').Router();
-// const { twilio } = require('./../controllers/twilio');
+// const twilio = require('./../controllers/twilio');
 
 const { selectStatement, insertStatement } = require('./../db/index');
 
@@ -104,6 +104,7 @@ router.get('/referral/:user', (req, res) => {
      forEach user text them a new event opened up for that event
  */
 router.get('/shareLink/:chapter', (req, res) => {
+<<<<<<< HEAD
   selectStatement(
     ['phoneNumber', 'C.chapterName'],
     'UsersTable AS U',
@@ -121,6 +122,19 @@ router.get('/shareLink/:chapter', (req, res) => {
       console.log(error);
       res.sendStatus(404);
     });
+=======
+    selectStatement(['U.phoneNumber', 'C.chapterName'], 'UsersTable AS U', `INNER JOIN chapters AS C ON C.chapterCode = U.chapterMemberCode WHERE U.chapterMemberCode = '${req.params.chapter}'`)
+        .then(user => {
+            user.forEach(val => {
+                twilio.text(val.phoneNumber, `New event in ${val.chapterName}`)
+            });
+            res.sendStatus(200);
+        })
+        .catch(error => {
+            console.log(error);
+            res.sendStatus(404);
+        });
+>>>>>>> 3af184aad6494d5fa4863cbc688df57a053787f9
 });
 
 module.exports = router;

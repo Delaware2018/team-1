@@ -9,7 +9,7 @@ const indexRouter = require('./routes/index');
 const feedRouter = require('./routes/feed');
 const userRouter = require('./routes/user');
 
-const { insertStatement, selectStatement } = require('./db');
+const { insertStatement } = require('./db');
 
 const port = process.env.PORT || 5000;
 
