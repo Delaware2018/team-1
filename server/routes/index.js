@@ -13,13 +13,16 @@ router.get('/journey/:user', (req, res) => {
 });
 
 router.post('/donation', (req, res) => {
-    let donation = req.body;
+    let donation = {
+        userID: 1,
+        type: 'creditCard',
+        dateOfDonation: '2018-09-21',
+        amount: req.body.amount
+    };
     selectStatement(['username'], 'UsersTable', `WHERE username = '${req.body.name}'`)
         .then(user => {
+            console.log(user);
             if(user.length === 1) {
-                donation.type = 'creditCard';
-                donation.dateOfDonation = '2018-09-21';
-
                 insertStatement(donation, 'donations').then((result) => {
                     res.status(200).send(true);
                 });
